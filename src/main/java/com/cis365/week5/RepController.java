@@ -1,6 +1,6 @@
 package com.cis365.week5;
 
-import com.cis365.week5.models.Rep;
+import com.cis365.week5.models.Starship;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
@@ -10,17 +10,17 @@ import java.util.List;
 public class RepController {
 
     @GetMapping("/rep")
-    public List<Rep> reps() {
+    public List<Starship> reps() {
         return DataStore.listReps();
     }
 
     @GetMapping("/rep/{id}")
-    public Rep getRepById(@PathVariable(value = "id") String repNum) {
+    public Starship getRepById(@PathVariable(value = "id") String repNum) {
         return DataStore.findRepById(repNum);
     }
 
     @PostMapping(value="/rep/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE})
-    public Rep addRep(@PathVariable(value = "id") String repNum,@RequestBody Rep repToUpdate) {
-        return DataStore.updateRep(repNum, repToUpdate);
+    public Starship addRep(@PathVariable(value = "id") String repNum, @RequestBody Starship starshipToUpdate) {
+        return DataStore.updateRep(repNum, starshipToUpdate);
     }
 }

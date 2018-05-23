@@ -2,8 +2,8 @@ package com.cis365.week5;
 
 import java.util.List;
 
-import com.cis365.week5.models.Customer;
-import com.cis365.week5.models.Rep;
+import com.cis365.week5.models.Planet;
+import com.cis365.week5.models.Starship;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -39,11 +39,11 @@ public class DataStore {
         return sessionFactory;
     }
 
-    public static List<Customer> listCustomers( ) {
+    public static List<Planet> listPlanets( ) {
         Session session = getSessionFactory().openSession();
 
         try {
-            return session.createQuery("FROM Customer").list();
+            return session.createQuery("FROM Planet").list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -52,11 +52,11 @@ public class DataStore {
         return null;
     }
 
-    public static List<Rep> listReps() {
+    public static List<Starship> listReps() {
         Session session = getSessionFactory().openSession();
 
         try {
-            return session.createQuery("FROM Rep").list();
+            return session.createQuery("FROM Starship").list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -65,11 +65,11 @@ public class DataStore {
         return null;
     }
 
-    public static Rep findRepById(String repNum) {
+    public static Starship findRepById(String repNum) {
         Session session = getSessionFactory().openSession();
 
         try {
-            return (Rep) session.get(Rep.class, repNum);
+            return (Starship) session.get(Starship.class, repNum);
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
@@ -78,17 +78,17 @@ public class DataStore {
         return null;
     }
 
-    public static Rep updateRep(String repNum, Rep repToUpdate) {
+    public static Starship updateRep(String repNum, Starship starshipToUpdate) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            Rep existing = findRepById(repNum);
-            if (existing != null && repNum == repToUpdate.getId())
-                existing = repToUpdate;
+            Starship existing = findRepById(repNum);
+            if (existing != null && repNum == starshipToUpdate.getId())
+                existing = starshipToUpdate;
             tx.commit();
-            return repToUpdate;
+            return starshipToUpdate;
         }  catch (HibernateException e) {
             if (tx != null)
                 tx.rollback();

@@ -3,17 +3,22 @@ package com.cis365.week5.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CUSTOMER")
-public class Customer {
+@Table(name = "REP")
+public class Starship {
 
-    public Customer(){}
+
+
+    public Starship(){}
 
     @Id
-    @Column(name = "CUSTOMER_NUM")
+    @Column(name = "REP_NUM")
     private String id;
 
-    @Column(name = "CUSTOMER_NAME")
-    private String custmomerName;
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "FIRST_NAME")
+    private String firstName;
 
     @Column(name = "STREET")
     private String streetAddress;
@@ -27,14 +32,11 @@ public class Customer {
     @Column(name = "ZIP")
     private String zipcode;
 
-    @Column(name = "BALANCE")
-    private double balance;
+    @Column(name = "COMMISSION")
+    private double commission;
 
-    @Column(name = "CREDIT_LIMIT")
-    private double creditLimit;
-
-    @Column(name = "REP_NUM")
-    private String repNum;
+    @Column(name = "RATE")
+    private double rate;
 
     public String getId() {
         return id;
@@ -44,12 +46,20 @@ public class Customer {
         this.id = id;
     }
 
-    public String getCustmomerName() {
-        return custmomerName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setCustmomerName(String custmomerName) {
-        this.custmomerName = custmomerName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getStreetAddress() {
@@ -84,30 +94,21 @@ public class Customer {
         this.zipcode = zipcode;
     }
 
-    public double getBalance() {
-        return balance;
+    public double getCommission() {
+        return commission;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setCommission(double commission) {
+        this.commission = commission;
     }
 
-    public double getCreditLimit() {
-        return creditLimit;
+    public double getRate() {
+        return rate;
     }
 
-    public void setCreditLimit(double creditLimit) {
-        this.creditLimit = creditLimit;
+    public void setRate(double rate) {
+        this.rate = rate;
     }
-
-    public String getRepNum() {
-        return repNum;
-    }
-
-    public void setRepNum(String repNum) {
-        this.repNum = repNum;
-    }
-
 
 
 }
