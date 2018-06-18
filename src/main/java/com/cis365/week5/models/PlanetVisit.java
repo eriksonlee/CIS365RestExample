@@ -14,7 +14,6 @@ public class PlanetVisit {
     @Column(name = "PLANETID")
     private String planetId;
 
-    @Id
     @Column(name = "STARSHIPID")
     private String starshipId;
 

@@ -14,7 +14,6 @@ public class Starship {
     @Column(name = "STARSHIPID")
     private String starshipId;
 
-    @Id
     @Column(name = "NAME")
     private String starshipName;
 

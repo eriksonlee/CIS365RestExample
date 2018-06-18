@@ -10,8 +10,10 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-        <mapping class="com.cis365.week5.models.Customer"/>
-        <mapping class="com.cis365.week5.models.Rep"/>
+        <property name="connection.url">jdbc:cis365.c3alkremajbb.us-east-1.rds.amazonaws.com:1521/MYDB</property>
+        <mapping class="com.cis365.week5.models.Planet"/>
+        <mapping class="com.cis365.week5.models.PlanetVisit"/>
+        <mapping class="com.cis365.week5.models.Starship"/>
     </session-factory>
 
 </hibernate-configuration>
