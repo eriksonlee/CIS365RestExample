@@ -1,12 +1,16 @@
 package com.cis365.week5;
 
+import com.cis365.week5.models.Planet;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class PlanetVisitController {
 
-    @GetMapping("/")
-    public String hello() {
-        return "hello world";
+    @RequestMapping("/planetvisit")
+    public List<Planet> planetvisits()
+    {
+        return DataStore.listPlanetVisits();
     }
 }

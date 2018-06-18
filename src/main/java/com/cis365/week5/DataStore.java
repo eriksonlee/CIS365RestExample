@@ -2,8 +2,7 @@ package com.cis365.week5;
 
 import java.util.List;
 
-import com.cis365.week5.models.Planet;
-import com.cis365.week5.models.Starship;
+import com.cis365.week5.models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -43,7 +42,33 @@ public class DataStore {
         Session session = getSessionFactory().openSession();
 
         try {
-            return session.createQuery("FROM Planet").list();
+            return session.createQuery("FROM PLANET").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public static List<PlanetVisit> listPlanetVisits( ) {
+        Session session = getSessionFactory().openSession();
+
+        try {
+            return session.createQuery("FROM PLANETVISIT").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public static List<Starship> listStarships( ) {
+        Session session = getSessionFactory().openSession();
+
+        try {
+            return session.createQuery("FROM STARSHIP").list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -65,11 +90,11 @@ public class DataStore {
         return null;
     }
 
-    public static Starship findRepById(String repNum) {
+    public static Starship findStarshipById(String starshipId) {
         Session session = getSessionFactory().openSession();
 
         try {
-            return (Starship) session.get(Starship.class, repNum);
+            return (Starship) session.get(Starship.class, starshipId);
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
@@ -78,14 +103,14 @@ public class DataStore {
         return null;
     }
 
-    public static Starship updateRep(String repNum, Starship starshipToUpdate) {
+    public static Starship updateStarship(String starshipId, Starship starshipToUpdate) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            Starship existing = findRepById(repNum);
-            if (existing != null && repNum == starshipToUpdate.getId())
+            Starship existing = findStarshipById(starshipId);
+            if (existing != null && starshipId == starshipToUpdate.getStarshipId())
                 existing = starshipToUpdate;
             tx.commit();
             return starshipToUpdate;
