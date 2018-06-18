@@ -1,11 +1,12 @@
+
 app.controller('appController', ["$scope", "$log", "appService",
     function($scope, $log, appService) {
         $scope.firstName= "John";
         $scope.lastName= "Doe";
-        $scope.reps= appService.getReps();
+        $scope.reps= appService.getPlanets();
 
-        $scope.loadReps = function () {
-            var promiseGet = appService.getReps();
+        $scope.loadPlanets = function () {
+            var promiseGet = appService.getPlanets();
             promiseGet.then(function (result) {
                 if (result && result.data) {
                     $scope.reps = result.data;
@@ -15,6 +16,6 @@ app.controller('appController', ["$scope", "$log", "appService",
             });
         };
 
-        $scope.loadReps();
+        $scope.loadPlanets();
 
-}]);
+    }]);

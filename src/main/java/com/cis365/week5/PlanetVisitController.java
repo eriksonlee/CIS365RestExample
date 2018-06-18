@@ -19,13 +19,12 @@ public class PlanetVisitController {
 
 
     @GetMapping("/planetvisit/{id}")
-    public Starship starshipById(@PathVariable(value = "id") String starshipId) {
-        return DataStore.findStarshipById(starshipId);
+    public PlanetVisit planetVisitById(@PathVariable(value = "id") String planetVisitId) {
+        return DataStore.findPlanetVisitById(planetVisitId);
     }
 
     @PostMapping(value="/planetvisit/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE})
-    public Starship addStarship(@PathVariable(value = "id") String starshipId, @RequestBody Starship starshipToUpdate) {
-        return DataStore.updateStarship(starshipId, starshipToUpdate);
+    public PlanetVisit addPlanetVisit(@PathVariable(value = "id") String planetId, @RequestBody PlanetVisit planetVisitToUpdate) {
+        return DataStore.updatePlanetVisit(planetId, planetVisitToUpdate);
     }
-
 }
