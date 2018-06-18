@@ -51,6 +51,42 @@ public class DataStore {
         return null;
     }
 
+    public static Planet findPlanetById(String planetId) {
+        Session session = getSessionFactory().openSession();
+
+        try {
+            return (Planet) session.get(Planet.class, planetId);
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public static Planet updatePlanet(String planetId, Planet planetToUpdate) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            Planet existing = findPlanetById(planetId);
+            if (existing != null && planetId == planetToUpdate.getPlanetId())
+                existing = planetToUpdate;
+            tx.commit();
+            return planetToUpdate;
+        }  catch (HibernateException e) {
+            if (tx != null)
+                tx.rollback();
+            e.printStackTrace();
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
     public static List<PlanetVisit> listPlanetVisits( ) {
         Session session = getSessionFactory().openSession();
 
@@ -63,6 +99,43 @@ public class DataStore {
         }
         return null;
     }
+
+    public static PlanetVisit findPlanetVisitById(String planetId, String starshipId) {
+        Session session = getSessionFactory().openSession();
+
+        try {
+            return (PlanetVisit) session.get(PlanetVisit.class, planetId, starshipId);
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public static PlanetVisit updatePlanetVisit(String planetId, String starshipId, PlanetVisit planetVisitToUpdate) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            PlanetVisit existing = findPlanetVisitById(planetId, starshipId);
+            if (existing != null && planetId == planetVisitToUpdate.getPlanetId())
+                existing = planetVisitToUpdate;
+            tx.commit();
+            return planetVisitToUpdate;
+        }  catch (HibernateException e) {
+            if (tx != null)
+                tx.rollback();
+            e.printStackTrace();
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
 
     public static List<Starship> listStarships( ) {
         Session session = getSessionFactory().openSession();
@@ -77,18 +150,6 @@ public class DataStore {
         return null;
     }
 
-    public static List<Starship> listReps() {
-        Session session = getSessionFactory().openSession();
-
-        try {
-            return session.createQuery("FROM Starship").list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return null;
-    }
 
     public static Starship findStarshipById(String starshipId) {
         Session session = getSessionFactory().openSession();

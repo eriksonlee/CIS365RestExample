@@ -21,7 +21,6 @@ public class StarshipController {
         return DataStore.findStarshipById(starshipId);
     }
 
-
     @PostMapping(value="/starship/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE})
     public Starship addStarship(@PathVariable(value = "id") String starshipId, @RequestBody Starship starshipToUpdate) {
         return DataStore.updateStarship(starshipId, starshipToUpdate);
